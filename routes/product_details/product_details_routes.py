@@ -1,7 +1,12 @@
 from flask import Blueprint, request
 from routes.product_details import product_details_controller
+from flask_jwt_extended import jwt_required
 
 pd_bp = Blueprint("pd_bp", __name__)
+@pd_bp.before_request
+@jwt_required()
+def before_request():
+    pass
 
 @pd_bp.route("/getAll", methods=["GET"])
 def getAllProducts():

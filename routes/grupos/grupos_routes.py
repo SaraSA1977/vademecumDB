@@ -1,7 +1,13 @@
 from flask import Blueprint, request
 from routes.grupos import grupos_controller
+from flask_jwt_extended import jwt_required
 
 grupos_bp = Blueprint("grupos_bp", __name__)
+
+@grupos_bp.before_request
+@jwt_required()
+def before_request():
+    pass
 
 @grupos_bp.route("/getAll", methods=["GET"])
 def getAllGrupos():

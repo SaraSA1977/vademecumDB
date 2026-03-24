@@ -5,7 +5,7 @@ from sqlalchemy import Column, Integer, String, Date, ForeignKey, Numeric, Check
 from sqlalchemy.orm import relationship
 
 from db.db import Base
-#grrupo
+ #grrupo
 class Grupo(Base):
     __tablename__ = "grupos"
 
@@ -89,4 +89,23 @@ class ProductDetail(Base):
     # Relaciones
     grupo = relationship("Grupo")
     forma_farmaceutica = relationship("FormaFarmaceutica")
+
+class User(Base):
+    __tablename__="users"
+    id = Column(Integer, primary_key=True)
+    identification = Column(String(15), nullable=False, unique = True)
+    email = Column(String(100), nullable=True, unique = True)
+    full_name = Column(String(200), nullable=False)
+    password_hash = Column(String(200), nullable=False)
+    is_active = Column(Integer, nullable=False, default=1)
+
+    def to_dict(self):
+        return{
+            "id":self.id,
+            "identification" : self.identification,
+            "email" : self.email,
+            "full_name" : self.full_name,
+            "is_active" : self.is_active
+
+        }
     

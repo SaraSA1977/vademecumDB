@@ -1,7 +1,13 @@
 from flask import Blueprint, request
 from routes.ff import ff_controller
+from flask_jwt_extended import jwt_required
 
 ff_bp = Blueprint("ff_bp", __name__)
+
+@ff_bp.before_request
+@jwt_required()
+def before_request():
+    pass
 
 @ff_bp.route("/getAll", methods=["GET"])
 def getAllFF():

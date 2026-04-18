@@ -4,11 +4,13 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 from flask_jwt_extended import JWTManager
 
+
 # NUESTRAS RUTAS CRUD
 from routes.grupos.grupos_routes import grupos_bp
 from routes.ff.ff_routes import ff_bp
 from routes.product_details.product_details_routes import pd_bp
 from routes.auth.auth_routes import auth_bp
+from routes.users.users_routes import users_bp
 
 from datetime import timedelta
 
@@ -25,6 +27,7 @@ def run_app():
     jwt = JWTManager(app)
     # Configuración CORS
     CORS(
+        app,
         resources={r"/*": {"origins": "*"}},
         supports_credentials=False,
         expose_headers=["Authorization"],
@@ -37,6 +40,7 @@ def run_app():
     app.register_blueprint(ff_bp, url_prefix="/ff")
     app.register_blueprint(pd_bp, url_prefix="/products")
     app.register_blueprint(auth_bp, url_prefix="/auth")
+    app.register_blueprint(users_bp, url_prefix="/users")
 
     return app
 

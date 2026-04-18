@@ -6,6 +6,15 @@ from sqlalchemy.orm import relationship
 
 from db.db import Base
  #grrupo
+
+
+
+class Role(Base):
+    __tablename__ = "roles"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50), nullable=False)
+
 class Grupo(Base):
     __tablename__ = "grupos"
 
@@ -99,13 +108,17 @@ class User(Base):
     password_hash = Column(String(200), nullable=False)
     is_active = Column(Integer, nullable=False, default=1)
 
+    role_id = Column(Integer, ForeignKey("roles.id"), nullable=False)
+    role = relationship("Role")
+
     def to_dict(self):
         return{
             "id":self.id,
             "identification" : self.identification,
             "email" : self.email,
             "full_name" : self.full_name,
-            "is_active" : self.is_active
+            "is_active" : self.is_active,
+            "role_id": self.role_id
 
         }
     

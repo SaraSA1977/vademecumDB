@@ -1,9 +1,7 @@
 from flask import Blueprint, request
-
 from routes.auth import auth_controller
 
 auth_bp = Blueprint("auth_bp", __name__)
-
 
 @auth_bp.route("/create", methods=["POST"])
 def create_user():

@@ -21,3 +21,7 @@ SessionLocal = sessionmaker(
 Base = declarative_base()
 
 print("Connected to DB OK")
+
+from db import models  # 👈 esto hace que cargue User
+
+Base.metadata.create_all(bind=engine)

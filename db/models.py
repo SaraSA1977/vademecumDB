@@ -63,17 +63,13 @@ class ProductDetail(Base):
     comercial_name = Column(String(200), nullable=False)
     concentration = Column(String(100))
 
-
-
-
-    id_grupo = Column(
+    grupo_id = Column(
         Integer,
         ForeignKey("grupos.id", ondelete="RESTRICT"),
         nullable=False
     )
 
-
-    id_FF = Column(
+    ff_id = Column(
         Integer,
         ForeignKey("forma_farmaceutica.id", ondelete="RESTRICT"),
         nullable=False
@@ -85,8 +81,8 @@ class ProductDetail(Base):
         "id": self.id,
         "comercial_name": self.comercial_name,
         "concentration": self.concentration,
-        "id_grupo": self.id_grupo,
-        "id_FF": self.id_FF
+        "grupo_id": self.grupo_id,
+        "ff_id": self.ff_id
     }
 
 

@@ -62,7 +62,6 @@ class ProductDetail(Base):
 
     comercial_name = Column(String(200), nullable=False)
     concentration = Column(String(100))
-    notas = Column(String)
 
 
 
@@ -86,7 +85,6 @@ class ProductDetail(Base):
         "id": self.id,
         "comercial_name": self.comercial_name,
         "concentration": self.concentration,
-        "notas": self.notas,
         "id_grupo": self.id_grupo,
         "id_FF": self.id_FF
     }

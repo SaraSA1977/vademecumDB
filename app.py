@@ -11,6 +11,7 @@ from routes.ff.ff_routes import ff_bp
 from routes.product_details.product_details_routes import pd_bp
 from routes.auth.auth_routes import auth_bp
 from routes.users.users_routes import users_bp
+from routes.dashboard.dashboard_routes import dashboard_bp
 
 from datetime import timedelta
 
@@ -41,6 +42,7 @@ def run_app():
     app.register_blueprint(pd_bp, url_prefix="/products")
     app.register_blueprint(auth_bp, url_prefix="/auth")
     app.register_blueprint(users_bp, url_prefix="/users")
+    app.register_blueprint(dashboard_bp, url_prefix="/dashboard")
 
     return app
 

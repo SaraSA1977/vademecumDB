@@ -59,35 +59,16 @@ class ProductDetail(Base):
     __tablename__ = "product_details"
 
     id = Column(Integer, primary_key=True)
-
     comercial_name = Column(String(200), nullable=False)
     concentration = Column(String(100))
-
-    grupo_id = Column(
-        Integer,
-        ForeignKey("grupos.id", ondelete="RESTRICT"),
-        nullable=False
-    )
-
-    ff_id = Column(
-        Integer,
-        ForeignKey("forma_farmaceutica.id", ondelete="RESTRICT"),
-        nullable=False
-    )
 
 
     def to_dict(self):
       return {
         "id": self.id,
         "comercial_name": self.comercial_name,
-        "concentration": self.concentration,
-        "grupo_id": self.grupo_id,
-        "ff_id": self.ff_id
+        "concentration": self.concentration
     }
-
-
-
-
 
     # Relaciones
     grupo = relationship("Grupo")

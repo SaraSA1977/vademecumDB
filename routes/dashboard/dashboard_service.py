@@ -45,32 +45,12 @@ def get_sales_by_month():
 
 def get_products_by_category():
     """
-    Productos agrupados por grupo (YA CORREGIDO grupo_id)
+    Productos por categoría (datos de ejemplo)
     """
-    session = SessionLocal()
-    try:
-        grupos = session.query(Grupo).all()
-
-        labels = []
-        data = []
-
-        for grupo in grupos:
-            count = session.query(ProductDetail).filter(
-                ProductDetail.grupo_id == grupo.id
-            ).count()
-
-            labels.append(grupo.name)
-            data.append(count)
-
-        return {
-            "labels": labels if labels else ["Sin datos"],
-            "data": data if data else [0]
-        }, None
-
-    except Exception as e:
-        return None, str(e)
-    finally:
-        session.close()
+    return {
+        "labels": ["Antibióticos", "Analgésicos", "Vitaminas", "Antiinflamatorios"],
+        "data": [40, 28, 35, 22]
+    }
 
 
 def get_supplier_distribution():

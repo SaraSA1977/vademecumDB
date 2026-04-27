@@ -1,8 +1,9 @@
 
 from __future__ import annotations
 
-from sqlalchemy import Column, Integer, String, Date, ForeignKey, Numeric, CheckConstraint
+from sqlalchemy import Column, Integer, String, Date, ForeignKey, Numeric, CheckConstraint, DateTime
 from sqlalchemy.orm import relationship
+from datetime import datetime
 
 from db.db import Base
  #grrupo
@@ -80,4 +81,24 @@ class User(Base):
             "role_id": self.role_id
 
         }
+
+
+class Sale(Base):
+    __tablename__ = "sales"
     
+    id = Column(Integer, primary_key=True)
+    sale_date = Column(DateTime, nullable=False, default=datetime.utcnow)
+    product_id = Column(Integer, ForeignKey("product_details.id"), nullable=False)
+    quantity = Column(Integer, nullable=False, default=1)
+    amount = Column(Numeric(10, 2), nullable=False)
+    status = Column(String(50), nullable=False, default="completed")
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "sale_date": self.sale_date.isoformat() if self.sale_date else None,
+            "product_id": self.product_id,
+            "quantity": self.quantity,
+            "amount": float(self.amount),
+            "status": self.status
+        }

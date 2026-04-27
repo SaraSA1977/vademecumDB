@@ -61,7 +61,7 @@ class ProductDetail(Base):
     id = Column(Integer, primary_key=True)
 
     comercial_name = Column(String(200), nullable=False)
-    concentracion = Column(String(100))
+    concentration = Column(String(100))
     notas = Column(String)
 
 
@@ -85,7 +85,7 @@ class ProductDetail(Base):
       return {
         "id": self.id,
         "comercial_name": self.comercial_name,
-        "concentracion": self.concentracion,
+        "concentration": self.concentration,
         "notas": self.notas,
         "id_grupo": self.id_grupo,
         "id_FF": self.id_FF

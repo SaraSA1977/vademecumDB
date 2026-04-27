@@ -21,12 +21,6 @@ class Grupo(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable=False)
 
-    products = relationship(
-        "ProductDetail",
-        back_populates="grupo",
-        passive_deletes=True
-    )
-
     def to_dict(self):
         return {
             "id": self.id,
@@ -40,12 +34,6 @@ class FormaFarmaceutica(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(150), nullable=False)
-
-    products = relationship(
-        "ProductDetail",
-        back_populates="forma_farmaceutica",
-        passive_deletes=True
-    )
 
     def to_dict(self):
         return {
@@ -69,10 +57,6 @@ class ProductDetail(Base):
         "comercial_name": self.comercial_name,
         "concentration": self.concentration
     }
-
-    # Relaciones
-    grupo = relationship("Grupo")
-    forma_farmaceutica = relationship("FormaFarmaceutica")
 
 class User(Base):
     __tablename__="users"
